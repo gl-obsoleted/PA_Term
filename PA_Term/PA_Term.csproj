@@ -8,8 +8,8 @@
     <ProjectGuid>{24A97835-7542-4545-A391-8F108DBF81D4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>usmooth.app</RootNamespace>
-    <AssemblyName>usmooth.app</AssemblyName>
+    <RootNamespace>PA_Term</RootNamespace>
+    <AssemblyName>PA_Term</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
