@@ -62,6 +62,12 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>D:\dev_tools\Unity-5.3.6f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\dev_tools\Unity-5.3.6f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -104,6 +110,38 @@
     <Compile Include="Pages\Realtime\Realtime.xaml.cs">
       <DependentUpon>Realtime.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PA_Common\Editor\PAChartDataSet.cs" />
+    <Compile Include="PA_Common\Editor\PAEditorConst.cs" />
+    <Compile Include="PA_Common\Editor\PAEditorUtil.cs" />
+    <Compile Include="PA_Common\Editor\TableView\TableView.cs" />
+    <Compile Include="PA_Common\Editor\TableView\TableViewAppr.cs" />
+    <Compile Include="PA_Common\Editor\TableView\TableViewColDesc.cs" />
+    <Compile Include="PA_Common\Editor\TableView\TableViewDemoWindow.cs" />
+    <Compile Include="PA_Common\Editor\TableView\TableView_Impl.cs" />
+    <Compile Include="PA_Common\Editor\TestCommands\TestPACommon.cs" />
+    <Compile Include="PA_Common\Scripts\Logging\Log.cs" />
+    <Compile Include="PA_Common\Scripts\Logging\LogService.cs" />
+    <Compile Include="PA_Common\Scripts\Logging\LogUtil.cs" />
+    <Compile Include="PA_Common\Scripts\UniqueString.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsCmd.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsCmdParsing.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsCmdUtil.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsFrameData.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsGeneric.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsLogPacket.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsProtocol.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsUtil.cs" />
+    <Compile Include="PA_Common\usmooth\Editor\UsWindow.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\Notifiers\UsEditorNotifier.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\PerfData\DataCollector.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\PerfData\MeshLut.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\PerfData\UsTextureUtil.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\UsMain.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\UsMain_NetHandlers.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\UsNet.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\UsvConsole.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\UsvConsoleCmds.cs" />
+    <Compile Include="PA_Common\usmooth\Runtime\utest.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -163,18 +201,62 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <Compile Include="Pages\Home\Home.Net.cs" />
+    <None Include="PA_Common\.git" />
+    <None Include="PA_Common\Docs.meta" />
+    <None Include="PA_Common\Docs\TableView.md" />
+    <None Include="PA_Common\Docs\TableView.md.meta" />
+    <None Include="PA_Common\Docs\TableView.png.meta" />
+    <None Include="PA_Common\Editor.meta" />
+    <None Include="PA_Common\Editor\PAChartDataSet.cs.meta" />
+    <None Include="PA_Common\Editor\PAEditorConst.cs.meta" />
+    <None Include="PA_Common\Editor\PAEditorUtil.cs.meta" />
+    <None Include="PA_Common\Editor\TableView.meta" />
+    <None Include="PA_Common\Editor\TableView\TableView.cs.meta" />
+    <None Include="PA_Common\Editor\TableView\TableViewAppr.cs.meta" />
+    <None Include="PA_Common\Editor\TableView\TableViewColDesc.cs.meta" />
+    <None Include="PA_Common\Editor\TableView\TableViewDemoWindow.cs.meta" />
+    <None Include="PA_Common\Editor\TableView\TableView_Impl.cs.meta" />
+    <None Include="PA_Common\Editor\TestCommands.meta" />
+    <None Include="PA_Common\Editor\TestCommands\TestPACommon.cs.meta" />
+    <None Include="PA_Common\Scripts.meta" />
+    <None Include="PA_Common\Scripts\Logging.meta" />
+    <None Include="PA_Common\Scripts\Logging\Log.cs.meta" />
+    <None Include="PA_Common\Scripts\Logging\LogService.cs.meta" />
+    <None Include="PA_Common\Scripts\Logging\LogUtil.cs.meta" />
+    <None Include="PA_Common\Scripts\UniqueString.cs.meta" />
+    <None Include="PA_Common\usmooth.meta" />
+    <None Include="PA_Common\usmooth\Common.meta" />
+    <None Include="PA_Common\usmooth\Common\UsCmd.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsCmdParsing.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsCmdUtil.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsFrameData.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsGeneric.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsLogPacket.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsProtocol.cs.meta" />
+    <None Include="PA_Common\usmooth\Common\UsUtil.cs.meta" />
+    <None Include="PA_Common\usmooth\Editor.meta" />
+    <None Include="PA_Common\usmooth\Editor\UsWindow.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime.meta" />
+    <None Include="PA_Common\usmooth\Runtime\Notifiers.meta" />
+    <None Include="PA_Common\usmooth\Runtime\Notifiers\UsEditorNotifier.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\PerfData.meta" />
+    <None Include="PA_Common\usmooth\Runtime\PerfData\DataCollector.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\PerfData\MeshLut.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\PerfData\UsTextureUtil.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\UsMain.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\UsMain_NetHandlers.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\UsNet.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\UsvConsole.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\UsvConsoleCmds.cs.meta" />
+    <None Include="PA_Common\usmooth\Runtime\utest.cs.meta" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\usmooth.common\usmooth.common.csproj">
-      <Project>{fd3bfa29-031d-4cd9-b82b-653519423735}</Project>
-      <Name>usmooth.common</Name>
-    </ProjectReference>
+    <Content Include="PA_Common\Docs\TableView.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

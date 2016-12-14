@@ -1,0 +1,5 @@
+/.nuget
+/bin
+/packages
+/usmooth.app/obj
+**.suo

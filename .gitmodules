@@ -1,0 +1,3 @@
+[submodule "usmooth.app/PA_Common"]
+	path = usmooth.app/PA_Common
+	url = https://github.com/PerfAssist/PA_Common.git
