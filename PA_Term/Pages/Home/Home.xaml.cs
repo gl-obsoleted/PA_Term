@@ -39,7 +39,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
-using usmooth.common;
+
 
 namespace usmooth.app.Pages
 {
@@ -57,10 +57,10 @@ namespace usmooth.app.Pages
             InitializeComponent();
 
             // refresh recent target IP list
-            cb_targetIP.Items.Add(Properties.Settings.Default.LocalAddr);
-            if (Properties.Settings.Default.RecentAddrList != null)
+            cb_targetIP.Items.Add(PA_Term.Properties.Settings.Default.LocalAddr);
+            if (PA_Term.Properties.Settings.Default.RecentAddrList != null)
             {
-                foreach (var item in Properties.Settings.Default.RecentAddrList)
+                foreach (var item in PA_Term.Properties.Settings.Default.RecentAddrList)
                 {
                     cb_targetIP.Items.Add(item);
                 }

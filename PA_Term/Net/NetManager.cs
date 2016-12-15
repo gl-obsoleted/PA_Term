@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using usmooth.common;
+
 using Timer = System.Timers.Timer;
 
 namespace usmooth.app
@@ -67,14 +67,7 @@ namespace usmooth.app
 
         public bool Connect(string addr)
         {
-            int port = 0;
-            if (!int.TryParse(Properties.Settings.Default.ServerPort, out port))
-            {
-                UsLogging.Printf(LogWndOpt.Error, "Properties.Settings.Default.ServerPort '{0}' invalid, connection aborted.", Properties.Settings.Default.ServerPort);
-                return false;
-            }
-
-            _client.Connect(addr, port);
+            _client.Connect(addr, UsConst.ServerPort);
             return true;
         }
 
@@ -97,13 +90,13 @@ namespace usmooth.app
         {
             if (!IsConnected)
             {
-                UsLogging.Printf(LogWndOpt.Bold, "not connected to server, command ignored.");
+                NetUtil.Log("not connected to server, command ignored.");
                 return;
             }
 
             if (cmdText.Length == 0)
             {
-                UsLogging.Printf(LogWndOpt.Bold, "the command bar is empty, try 'help' to list all supported commands.");
+                NetUtil.Log("the command bar is empty, try 'help' to list all supported commands.");
                 return;
             }
 
@@ -112,16 +105,16 @@ namespace usmooth.app
             cmd.WriteString(cmdText);
             Send(cmd);
 
-            UsLogging.Printf(string.Format("command executed: [b]{0}[/b]", cmdText));
+            NetUtil.Log("command executed: [b]{0}[/b]", cmdText);
         }
 
         private void OnConnected(object sender, EventArgs e)
         {
             UsCmd cmd = new UsCmd();
             cmd.WriteInt16((short)eNetCmd.CL_Handshake);
-            cmd.WriteInt16(Properties.Settings.Default.VersionMajor);
-            cmd.WriteInt16(Properties.Settings.Default.VersionMinor);
-            cmd.WriteInt16(Properties.Settings.Default.VersionPatch);
+            cmd.WriteInt16(PA_Term.Properties.Settings.Default.VersionMajor);
+            cmd.WriteInt16(PA_Term.Properties.Settings.Default.VersionMinor);
+            cmd.WriteInt16(PA_Term.Properties.Settings.Default.VersionPatch);
             _client.SendPacket(cmd);
 
             _tickTimer.Start();
@@ -138,13 +131,13 @@ namespace usmooth.app
 
         private void OnGuardingTimeout(object sender, EventArgs e)
         {
-            UsLogging.Printf(LogWndOpt.Error, "guarding timeout, closing connection...");
+            NetUtil.LogError("guarding timeout, closing connection...");
             Disconnect();
         }
 
         private bool Handle_HandshakeResponse(eNetCmd cmd, UsCmd c)
         {
-            UsLogging.Printf("eNetCmd.SV_HandshakeResponse received, connection validated.");
+            NetUtil.Log("eNetCmd.SV_HandshakeResponse received, connection validated.");
 
             SysPost.InvokeMulticast(this, LogicallyConnected);
 
@@ -154,7 +147,7 @@ namespace usmooth.app
 
         private bool Handle_KeepAliveResponse(eNetCmd cmd, UsCmd c)
         {
-            //UsLogging.Printf("'KeepAlive' received.");
+            //NetUtil.Log("'KeepAlive' received.");
             return true;
         }
 
@@ -168,7 +161,7 @@ namespace usmooth.app
         private bool Handle_ExecCommandResponse(eNetCmd cmd, UsCmd c)
         {
             int code = c.ReadInt32();
-            UsLogging.Printf(string.Format("command executing result: [b]{0}[/b]", code));
+            NetUtil.Log("command executing result: [b]{0}[/b]", code);
 
             return true;
         }

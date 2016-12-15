@@ -45,9 +45,12 @@ namespace usmooth.app
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            NetManager.Instance = new NetManager();
             UsLogFileReceiver.Instance = new UsLogFileReceiver();
             UsLogging.Receivers += UsLogFileReceiver.Instance.LogIntoFile;
+            NetUtil.LogHandler = UsLogging.Printf;
+            NetUtil.LogErrorHandler = UsLogging.Errorf;
+
+            NetManager.Instance = new NetManager();
         }
 
         protected override void OnExit(ExitEventArgs e)

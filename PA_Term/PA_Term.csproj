@@ -99,13 +99,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Net\NetUtil.cs" />
     <Compile Include="Pages\Effect\Effect.xaml.cs">
       <DependentUpon>Effect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Realtime\Realtime.Highlight.cs" />
     <Compile Include="Pages\Realtime\Realtime.Net.cs" />
     <Compile Include="AppSettingsUtil.cs" />
-    <Compile Include="Net\Impl\NetGuardTimer.cs" />
+    <Compile Include="Net\NetGuardTimer.cs" />
     <Compile Include="Net\NetManager.cs" />
     <Compile Include="Pages\Realtime\Realtime.xaml.cs">
       <DependentUpon>Realtime.xaml</DependentUpon>
@@ -126,6 +127,7 @@
     <Compile Include="PA_Common\usmooth\Common\UsCmd.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsCmdParsing.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsCmdUtil.cs" />
+    <Compile Include="PA_Common\usmooth\Common\UsConst.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsFrameData.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsGeneric.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsLogPacket.cs" />
@@ -147,7 +149,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Net\Impl\NetClient.cs" />
+    <Compile Include="Net\NetClient.cs" />
     <Compile Include="Pages\Realtime\DataGridUtil.cs" />
     <Compile Include="Core\UsLoggingUtil.cs" />
     <Page Include="MainWindow.xaml">

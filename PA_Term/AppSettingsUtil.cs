@@ -38,18 +38,18 @@ namespace usmooth.app
 
         public static bool AppendAsRecentlyConnected(string remoteAddr)
         {
-            if (Properties.Settings.Default.RecentAddrList == null)
+            if (PA_Term.Properties.Settings.Default.RecentAddrList == null)
             {
-                Properties.Settings.Default.RecentAddrList = new System.Collections.Specialized.StringCollection();
+                PA_Term.Properties.Settings.Default.RecentAddrList = new System.Collections.Specialized.StringCollection();
             }
             else
             {
-                if (remoteAddr == Localhost || Properties.Settings.Default.RecentAddrList.Contains(remoteAddr))
+                if (remoteAddr == Localhost || PA_Term.Properties.Settings.Default.RecentAddrList.Contains(remoteAddr))
                     return false;
             }
 
-            Properties.Settings.Default.RecentAddrList.Add(remoteAddr);
-            Properties.Settings.Default.Save();
+            PA_Term.Properties.Settings.Default.RecentAddrList.Add(remoteAddr);
+            PA_Term.Properties.Settings.Default.Save();
             return true;
         }
     }

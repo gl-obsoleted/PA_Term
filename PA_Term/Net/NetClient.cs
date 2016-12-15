@@ -33,7 +33,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using usmooth.common;
+
 
 namespace usmooth.app
 {
@@ -52,7 +52,7 @@ namespace usmooth.app
             _port = port;
             _tcpClient = new TcpClient();
             _tcpClient.BeginConnect(_host, _port, OnConnect, _tcpClient);
-            UsLogging.Printf(LogWndOpt.Bold, "connecting to [u]{0}:{1}[/u]...", host, port);
+            NetUtil.Log("connecting to [u]{0}:{1}[/u]...", host, port);
         }
 
         public void Disconnect()
@@ -65,7 +65,7 @@ namespace usmooth.app
                 _host = "";
                 _port = 0;
 
-                UsLogging.Printf("connection closed.");
+                NetUtil.Log("connection closed.");
                 SysPost.InvokeMulticast(this, Disconnected);
             }
         }
@@ -81,7 +81,7 @@ namespace usmooth.app
             {
                 if (!_tcpClient.Connected)
                 {
-                    UsLogging.Printf("disconnection detected. (_tcpClient.Connected == false).");
+                    NetUtil.Log("disconnection detected. (_tcpClient.Connected == false).");
                     throw new Exception();
                 }
 
@@ -91,7 +91,7 @@ namespace usmooth.app
                     byte[] checkConn = new byte[1];
                     if (_tcpClient.Client.Receive(checkConn, SocketFlags.Peek) == 0)
                     {
-                        UsLogging.Printf("disconnection detected. (failed to read by Poll/Receive).");
+                        NetUtil.Log("disconnection detected. (failed to read by Poll/Receive).");
                         throw new IOException();
                     }
                 }
@@ -123,10 +123,10 @@ namespace usmooth.app
                             case UsCmdExecResult.Succ:
                                 break;
                             case UsCmdExecResult.Failed:
-                                UsLogging.Printf("net cmd execution failed: {0}.", new UsCmd(buffer).ReadNetCmd());
+                                NetUtil.Log("net cmd execution failed: {0}.", new UsCmd(buffer).ReadNetCmd());
                                 break;
                             case UsCmdExecResult.HandlerNotFound:
-                                UsLogging.Printf("net unknown cmd: {0}.", new UsCmd(buffer).ReadNetCmd());
+                                NetUtil.Log("net unknown cmd: {0}.", new UsCmd(buffer).ReadNetCmd());
                                 break;
                         }
                     }
@@ -167,7 +167,7 @@ namespace usmooth.app
             {
                 if (tcpClient.Connected) // may throw NullReference
                 {
-                    UsLogging.Printf("connected successfully.");
+                    NetUtil.Log("connected successfully.");
                     SysPost.InvokeMulticast(this, Connected);
                 }
                 else
@@ -183,8 +183,8 @@ namespace usmooth.app
 
         private void DisconnectOnError(string info, Exception ex)
         {
-            UsLogging.Printf(LogWndOpt.Bold, info);
-            UsLogging.Printf(ex.ToString());
+            NetUtil.Log(info);
+            NetUtil.Log(ex.ToString());
 
             Disconnect();
         }

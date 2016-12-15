@@ -57,6 +57,11 @@ namespace usmooth.app
             Printf(LogWndOpt.Info, format, args);
         }
 
+        public static void Errorf(string format, params object[] args)
+        {
+            Printf(LogWndOpt.Error, format, args);
+        }
+
         public static void Printf(LogWndOpt opt, string format, params object[] args)
         {
             string formatted = string.Format(format, args);
