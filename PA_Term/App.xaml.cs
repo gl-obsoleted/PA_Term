@@ -51,6 +51,14 @@ namespace usmooth.app
             NetUtil.LogErrorHandler = UsLogging.Errorf;
 
             NetManager.Instance = new NetManager();
+            NetManager.Instance.Client.RegisterCmdHandler(eNetCmd.SV_App_Logging, Handle_ServerLogging);
+        }
+
+        private bool Handle_ServerLogging(eNetCmd cmd, UsCmd c)
+        {
+            UsLogPacket pkt = new UsLogPacket(c);
+            UsNetLogging.Print(pkt);
+            return true;
         }
 
         protected override void OnExit(ExitEventArgs e)
