@@ -14,10 +14,9 @@
 
         <StackPanel Height="Auto" Width="Auto" HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,5,0,15">
             <Button x:Name="bt_refresh" Height="25" Width="150" Content="刷新数据" Margin="10,0,10,0" Click="bt_refresh_Click" ToolTip="点击这里，向 Unity Editor 发起请求，更新下面三列数据。" />
-            <Button x:Name="bt_locate" Height="25" Width="150" Content="定位物件" Margin="10,0,10,0" Click="bt_locate_Click" ToolTip="点击这里，在 Unity Editor 的 Scene View 内定位并选中对应的物件。" />
         </StackPanel>
-        
-        <Grid Grid.Row="1">
+
+        <Grid Name="ThreeColumns" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="6"/>
@@ -29,7 +28,7 @@
             <ScrollViewer Margin="{StaticResource SplitLeft}">
                 <StackPanel>
                     <TextBlock x:Name="title_mesh" Text="Meshes" Style="{StaticResource Heading2}" />
-                    <DataGrid Name="MeshGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" MouseDoubleClick="MeshGrid_MouseDoubleClick" >
+                    <DataGrid Name="MeshGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" MouseDoubleClick="MeshGrid_MouseDoubleClick" MouseRightButtonUp="MeshGrid_MouseRightButtonUp">
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Visible">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -70,7 +69,7 @@
                 </StackPanel>
             </ScrollViewer>
             <GridSplitter Grid.Column="3" />
-            <ScrollViewer Grid.Column="4 " Margin="{StaticResource SplitRight}">
+            <ScrollViewer Name="TexturePanel" Grid.Column="4 " Margin="{StaticResource SplitRight}">
                 <StackPanel>
                     <TextBlock x:Name="title_texture" Text="Textures" Style="{StaticResource Heading2}" />
                     <DataGrid Name="TextureGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" MouseDoubleClick="TextureGrid_MouseDoubleClick" >

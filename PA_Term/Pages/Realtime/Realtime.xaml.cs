@@ -157,12 +157,6 @@ namespace usmooth.app.Pages
             NetRequest_FrameData();
         }
 
-        private void bt_locate_Click(object sender, RoutedEventArgs e)
-        {
-            var mesh = DataGridUtil.GetSelectedObject<MeshObject>(MeshGrid);
-            NetRequest_FlyToMesh(mesh);
-        }
-
         private void MeshGrid_OnVisibleChecked(object sender, EventArgs e)
         {
             CheckBox cb = sender as CheckBox;
@@ -175,6 +169,25 @@ namespace usmooth.app.Pages
                 return;
 
             NetManager.Instance.ExecuteCmd(string.Format("{0} {1}", ((bool)cb.IsChecked ? "showmesh" : "hidemesh"), mo.InstID));
+        }
+
+        private void MeshGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var miFlyTo = new MenuItem { Header = "Fly to ..." };
+            miFlyTo.Click += MiFlyTo_Click;
+
+            var contextMenu = new ContextMenu();
+            contextMenu.Items.Add(miFlyTo);
+            contextMenu.IsOpen = true;
+        }
+
+        private void MiFlyTo_Click(object sender, RoutedEventArgs e)
+        {
+            var mesh = DataGridUtil.GetSelectedObject<MeshObject>(MeshGrid);
+            if (mesh != null)
+            {
+                NetManager.Instance.ExecuteCmd(string.Format("flyto {0}", mesh.InstID));
+            }
         }
     }
 }
