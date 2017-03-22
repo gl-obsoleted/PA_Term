@@ -183,21 +183,16 @@ namespace usmooth.app.Pages
 
         private void bt_exec_cmd_Click(object sender, RoutedEventArgs e)
         {
-            ExecInputCmd();
+            NetManager.Instance.ExecuteCmd(tb_cmdbox.Text);
+            tb_cmdbox.Clear();
         }
 
         private void tb_cmdbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                ExecInputCmd();
+                bt_exec_cmd_Click(sender, e);
             }
-        }
-
-        private void ExecInputCmd()
-        {
-            NetManager.Instance.ExecuteCmd(tb_cmdbox.Text);
-            tb_cmdbox.Clear();
         }
 
         private void bt_disconnect_Click(object sender, RoutedEventArgs e)

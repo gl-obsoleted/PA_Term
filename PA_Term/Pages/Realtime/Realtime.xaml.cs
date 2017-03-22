@@ -86,6 +86,11 @@ namespace usmooth.app.Pages
             InitializeComponent();
 
             SetNetHandlers();
+
+            if (_savedTexturePanel == null)
+            {
+                bt_showTexturePanel_Click(null, null);
+            }
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -103,7 +108,7 @@ namespace usmooth.app.Pages
                     UsLogging.Printf("trying to enter the '[b]realtime[/b]' page when usmooth is [b]offline[/b], back to the main page.");
 
                     DefaultLinkNavigator dln = new DefaultLinkNavigator();
-                    dln.Navigate(new Uri("/Pages/Home.xaml", UriKind.Relative), this);
+                    dln.Navigate(new Uri("/Pages/Home/Home.xaml", UriKind.Relative), this);
                     return;
                 }
             }
@@ -152,6 +157,20 @@ namespace usmooth.app.Pages
                 HighlightMeshByMaterial(mat, Colors.Chartreuse);
         }
 
+        private void bt_exec_cmd_Click(object sender, RoutedEventArgs e)
+        {
+            NetManager.Instance.ExecuteCmd(tb_cmdbox.Text);
+            tb_cmdbox.Clear();
+        }
+
+        private void tb_cmdbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                bt_exec_cmd_Click(sender, e);
+            }
+        }
+
         private void bt_refresh_Click(object sender, RoutedEventArgs e)
         {
             NetRequest_FrameData();
@@ -188,6 +207,23 @@ namespace usmooth.app.Pages
             {
                 NetManager.Instance.ExecuteCmd(string.Format("flyto {0}", mesh.InstID));
             }
+        }
+
+        ColumnDefinition _savedTexturePanel = null;
+        private void bt_showTexturePanel_Click(object sender, RoutedEventArgs e)
+        {
+            if (_savedTexturePanel == null)
+            {
+                _savedTexturePanel = DataColumns.ColumnDefinitions[4];
+                DataColumns.ColumnDefinitions.RemoveAt(4);
+            }
+            else
+            {
+                DataColumns.ColumnDefinitions.Add(_savedTexturePanel);
+                _savedTexturePanel = null;
+            }
+
+            bt_showTexturePanel.IsChecked = _savedTexturePanel != null;
         }
     }
 }

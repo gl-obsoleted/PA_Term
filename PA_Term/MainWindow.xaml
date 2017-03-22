@@ -7,7 +7,7 @@
         ContentSource="/Pages/Home/Home.xaml">
 
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="targets">
+        <mui:LinkGroup DisplayName="home">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="status" Source="/Pages/Home/Home.xaml" />
             </mui:LinkGroup.Links>
@@ -17,7 +17,7 @@
                 <mui:Link DisplayName="data" Source="/Pages/Realtime/Realtime.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="特效">
+        <mui:LinkGroup DisplayName="effects">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="data" Source="/Pages/Effect/Effect.xaml" />
             </mui:LinkGroup.Links>
