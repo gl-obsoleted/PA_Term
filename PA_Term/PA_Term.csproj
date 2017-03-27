@@ -141,8 +141,6 @@
     <Compile Include="PA_Common\usmooth\Common\UsLogPacket.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsProtocol.cs" />
     <Compile Include="PA_Common\usmooth\Common\UsUtil.cs" />
-    <Compile Include="PA_Common\usmooth\Editor\UsWindow.cs" />
-    <Compile Include="PA_Common\usmooth\Runtime\Notifiers\UsEditorNotifier.cs" />
     <Compile Include="PA_Common\usmooth\Runtime\PerfData\DataCollector.cs" />
     <Compile Include="PA_Common\usmooth\Runtime\PerfData\MeshLut.cs" />
     <Compile Include="PA_Common\usmooth\Runtime\PerfData\UsTextureUtil.cs" />
@@ -244,11 +242,7 @@
     <None Include="PA_Common\usmooth\Common\UsLogPacket.cs.meta" />
     <None Include="PA_Common\usmooth\Common\UsProtocol.cs.meta" />
     <None Include="PA_Common\usmooth\Common\UsUtil.cs.meta" />
-    <None Include="PA_Common\usmooth\Editor.meta" />
-    <None Include="PA_Common\usmooth\Editor\UsWindow.cs.meta" />
     <None Include="PA_Common\usmooth\Runtime.meta" />
-    <None Include="PA_Common\usmooth\Runtime\Notifiers.meta" />
-    <None Include="PA_Common\usmooth\Runtime\Notifiers\UsEditorNotifier.cs.meta" />
     <None Include="PA_Common\usmooth\Runtime\PerfData.meta" />
     <None Include="PA_Common\usmooth\Runtime\PerfData\DataCollector.cs.meta" />
     <None Include="PA_Common\usmooth\Runtime\PerfData\MeshLut.cs.meta" />

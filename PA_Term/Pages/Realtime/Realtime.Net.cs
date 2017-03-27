@@ -49,7 +49,7 @@ namespace usmooth.app.Pages
             NetManager.Instance.RegisterCmdHandler(eNetCmd.SV_FrameDataV2_Names, NetHandle_FrameDataV2_Names);
             NetManager.Instance.RegisterCmdHandler(eNetCmd.SV_FrameDataEnd, NetHandle_FrameDataEnd);
 
-            NetManager.Instance.RegisterCmdHandler(eNetCmd.SV_Editor_SelectionChanged, NetHandle_Editor_SelectionChanged);
+            //NetManager.Instance.RegisterCmdHandler(eNetCmd.SV_Editor_SelectionChanged, NetHandle_Editor_SelectionChanged);
         }
 
         public void NetRequest_FrameData()
@@ -144,6 +144,7 @@ namespace usmooth.app.Pages
                 {
                     ((ObservableCollection<MeshObject>)(MeshGrid.DataContext)).Clear();
                 }
+                title_mesh.Text = string.Format("Meshes ({0})", meshList.Count);
             }));
 
             {
@@ -177,9 +178,9 @@ namespace usmooth.app.Pages
                     m.Visible = true;
                     m.InstID = c.ReadInt32();
                     m.VertCnt = c.ReadInt32();
-                    m.TriCnt = c.ReadInt32();
                     m.MatCnt = c.ReadInt32();
                     m.Size = c.ReadFloat();
+                    m.CamDist = c.ReadFloat();
                     ((ObservableCollection<MeshObject>)(MeshGrid.DataContext)).Add(m);
                 }
             }));
@@ -218,33 +219,33 @@ namespace usmooth.app.Pages
             return true;
         }
 
-        List<int> _instances = new List<int>();
+        //List<int> _instances = new List<int>();
 
-        public bool NetHandle_Editor_SelectionChanged(eNetCmd cmd, UsCmd c)
-        {
-            int count = c.ReadInt32();
-            UsLogging.Printf("eNetCmd.SV_Editor_SelectionChanged received ({0}, inst count: {1}).", c.Buffer.Length, count);
+        //public bool NetHandle_Editor_SelectionChanged(eNetCmd cmd, UsCmd c)
+        //{
+        //    int count = c.ReadInt32();
+        //    UsLogging.Printf("eNetCmd.SV_Editor_SelectionChanged received ({0}, inst count: {1}).", c.Buffer.Length, count);
 
-            _instances.Clear();
-            for (int i = 0; i < count; i++)
-            {
-                int instID = c.ReadInt32();
-                _instances.Add(instID);                                              
-            }
+        //    _instances.Clear();
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        int instID = c.ReadInt32();
+        //        _instances.Add(instID);                                              
+        //    }
 
-            MeshGrid.Dispatcher.Invoke(new Action(() =>
-            {
-                ClearAllSelectionsAndHighlightedObjects();
-                var meshes = HighlightMeshes(_instances, Colors.PaleTurquoise);
-                foreach (var mesh in meshes)
-                {
-                    var matLst = HighlightMaterialByMesh(mesh, Colors.PaleTurquoise);
-                    foreach (var mat in matLst)
-                        HighlightTextureByMaterial(mat, Colors.PaleTurquoise);
-                }
-            }));
+        //    MeshGrid.Dispatcher.Invoke(new Action(() =>
+        //    {
+        //        ClearAllSelectionsAndHighlightedObjects();
+        //        var meshes = HighlightMeshes(_instances, Colors.PaleTurquoise);
+        //        foreach (var mesh in meshes)
+        //        {
+        //            var matLst = HighlightMaterialByMesh(mesh, Colors.PaleTurquoise);
+        //            foreach (var mat in matLst)
+        //                HighlightTextureByMaterial(mat, Colors.PaleTurquoise);
+        //        }
+        //    }));
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }
